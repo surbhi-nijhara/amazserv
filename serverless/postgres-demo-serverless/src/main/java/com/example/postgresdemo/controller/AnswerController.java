@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@EnableWebMvc
+@EnableWebMvc //comment out if swagger needs to be enables, since webmvc config doesnt work together with spring config
 public class AnswerController {
 
     @Autowired

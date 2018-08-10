@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import javax.validation.Valid;
 
 @RestController
-@EnableWebMvc
+@EnableWebMvc // this is added for  lambda conversion, comment out if swagger needs to be enables, since webmvc config doesnt work together with spring config
 public class QuestionController {
 
     @Autowired
