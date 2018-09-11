@@ -2,8 +2,9 @@ package com.example.postgresdemo.controller;
 
 import com.example.postgresdemo.exception.ResourceNotFoundException;
 import com.example.postgresdemo.model.Answer;
-import com.example.postgresdemo.repository.AnswerRepository;
-import com.example.postgresdemo.repository.QuestionRepository;
+import com.example.postgresdemo.service.AnswerServiceTest;
+import com.example.postgresdemo.service.QuestionServiceTest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,10 @@ import java.util.List;
 public class AnswerController {
 
     @Autowired
-    private AnswerRepository answerRepository;
+    private AnswerServiceTest answerRepository;
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private QuestionServiceTest questionRepository;
 
     @GetMapping("/questions/{questionId}/answers")
     public List<Answer> getAnswersByQuestionId(@PathVariable Long questionId,@RequestParam("text") String text) {

@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @EnableWebMvc // this is added for  lambda conversion, comment out if swagger needs to be enables, since webmvc config doesnt work together with spring config
-public class QuestionController {
+public class QuestionControllerTest {
 
     @Autowired
     private QuestionServiceTest questionRepository;
