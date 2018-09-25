@@ -1,7 +1,7 @@
 This repository contains Database details and Tag engine prototype.
 
 ```
-savkar-dev
+dev
 │
 └───README.md (Savkar README)
 └───tagEngine (POC folder for Java based Tag Ebgine API Code)
