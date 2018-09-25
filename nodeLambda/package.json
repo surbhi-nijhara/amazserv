@@ -1,0 +1,41 @@
+{
+  "name": "assessment",
+  "version": "1.0.0",
+  "description": "Root Package",
+  "dependencies": {
+    "jasmine": "*",
+    "istanbul": "*",
+    "nyc": "*",
+    "jasmine-xml-reporter": "*"
+  },
+  "scripts": {
+    "test": "nyc ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport --filePrefix=unit_test_results"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masheen/assessment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/masheen/assessment/issues"
+  },
+  "nyc": {
+    "exclude": [
+      "AssessmentLambda/spec/**",
+      "AssessmentLambda/test/**",
+      "AssessmentLambda/index.js",
+      "QuestionLambda/spec/**",
+      "QuestionLambda/test/**",
+      "QuestionLambda/index.js",
+      "coverage/**"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "cache": true,
+    "all": true
+  },
+  "homepage": "https://github.com/masheen/assessment#readme"
+}

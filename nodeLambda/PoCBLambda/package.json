@@ -1,0 +1,34 @@
+{
+  "name": "QuestionApp",
+  "version": "1.0.0",
+  "description": "Question app in node",
+  "main": "index.js",
+  "author": "Pooja Harchirkar",
+  "license": "",
+  "dependencies": {
+    "jasmine": "*",
+    "istanbul": "*",
+    "nyc": "*",
+    "jasmine-xml-reporter": "*",
+    "LoggingModule": "file:../common/logging",
+    "LocalDBModule": "file:../common/db"
+  },
+  "scripts": {
+    "test": "nyc ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport --filePrefix=unit_test_results",
+    "zip": "7z a QuestionEngine.zip package.json node_modules service spec index.js package-lock.json"
+  },
+  "nyc": {
+    "exclude": [
+      "spec/**",
+      "coverage/**",
+      "test/**",
+      "index.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "cache": true,
+    "all": true
+  }
+}

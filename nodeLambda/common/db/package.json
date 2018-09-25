@@ -1,0 +1,20 @@
+{
+  "name": "LocalDBModule",
+  "version": "1.0.0",
+  "description": "This module is shared accross the app",
+  "main": "index.js",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "pg": "*",
+    "pg-hstore": "*",
+    "sequelize": "*"
+  },
+  "sql_con_params": {
+    "RDS_HOSTNAME": "",
+    "RDS_USERNAME": "",
+    "RDS_PASSWORD": "",
+    "RDS_PORT": "5432",
+    "DB_NAME": ""
+  }
+}

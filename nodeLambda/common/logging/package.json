@@ -1,0 +1,11 @@
+{
+  "name": "LoggingModule",
+  "version": "1.0.0",
+  "description": "This module is shared accross the app",
+  "main": "index.js",
+  "author": "Pooja Harchirkar",
+  "license": "",
+  "dependencies": {
+    "log4js": "*"
+  }
+}
