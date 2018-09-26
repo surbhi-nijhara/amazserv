@@ -1,0 +1,99 @@
+eval $(minikube docker-env)
+docker build -t hello-node:v1 .
+docker images
+kubectl get deployments
+kubectl get pod
+kubectl delete service hello-node
+kubectl delete deployment hello-node
+
+
+
+git checkout CON-4079
+git branch --set-upstream-to=origin/CON-4979
+git pull
+git commit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+understand better how to add a new pod like provisioning and catalog, that we'd do tomorrow. We should be able to map this easily thereon.
+https://kubernetes.io/docs/tutorials/stateless-application/hello-minikube/
+Hello Minikube | Kubernetes
+kubernetes.io
+Edit This Page. Hello Minikube. The goal of this tutorial is for you to turn a simple Hello World Node.js app into an application running on Kubernetes.
+Summary, and some more insight into CBS pods: All commands are in bold.
+
+With all of us already having minikube cluster and kubectl installed, a handful of steps (in Blue) needs to be followed further to have a sample new image running in minikube:
+
+i) create a new app (node/python)
+ii) build a docker filename 'DockerFile'.
+iii) Build your Docker image, using the Minikube Docker daemon:(instead of pushing your Docker image to a registry, you can simply build the       image using the same Docker host as the Minikube VM, so that the images are automatically present.)
+       -eval $(minikube docker-env)
+       -docker build -t hello-node:v1 .
+       -docker images
+             shows hellonode image with tag v1
+             In our current machines, will show a new hello-node alsong with ibmcb-xx images
+             [surbhi@oc3763864372 hellonode]$ docker images
+             REPOSITORY                                                                    TAG                 IMAGE ID            CREATED             SIZE
+             hello-node                                                                    v1                  ac76d3e9f74f        36 minutes ago      655MB
+             ibmcb-docker-local.artifactory.swg-devops.com/cb-order-service                latest              11b94ed09f9b
+
+iv)Create a Deployment and Pod - basic components of kubernetes
+    kubectl run hello-node --image=hello-node:v1 --port=8080
+    output: kubectl run hello-node --image=hello-node:v1 --port=8080
+
+   View the Deployment and Pod -->  commands which we are using already :
+    kubectl get deployments
+    kubectl get pod
+
+vi)Next Create and view a Service - needed for external (to minikube) access
+    kubectl expose deployment hello-node --type=LoadBalancer
+    kubectl get deployments
+
+
+       Output:[surbhi@oc3763864372 hellonode]$ kubectl get services
+        NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+        hello-node   NodePort    10.105.66.131   <none>        8080:30100/TCP   30m
+
+    Note: there are 2 ports here.
+    Instead of --type=LoadBalancer, CBS pods are created using ClusterIP or Nodeport
+    With 'NodePort'/'LoadBalancer', service is accessible through the minikube service command.
+
+     minikube service hello-node
+     This is accessible via http://{minikube vm IP}}:30100/
+
+    So the services have 2 ports , the right one is external , will be accessible via minikube service.
+    e.g: cb-consume-ui                  NodePort    10.110.114.211   <none>        443:30090/TCP
+
+   And we see handful for such services, which we get a list  after running the setups for consume and core. And we can access via
+   myminikube.info:30090/dashboard. (have to explore more here..how are we getting this hostname)
+
+   With 'ClusterIP', we get one port only, and this is not accessible through minikube service.
+
+vii)And We can delete deployment and service--> commands which we are using already
+kubectl delete service hello-node
+kubectl delete deployment hello-node
+
+vii) minikube stop, eval $(minikube docker-env -u), minikube de
