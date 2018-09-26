@@ -1,0 +1,31 @@
+
+docker run (start a container for the 1st time)
+docker stop ( stop a running container)
+docker start  (a stopped container)
+or
+docker restart
+
+docker run --name sam-app --link some-postgres:postgres -d application-that-uses-postgres
+docker run -it --rm --link sam-postgres:postgres postgres psql -h postgres -U postgres
+
+docker: Error response from daemon: Cannot link to a non running container: /sam-postgres AS /compassionate_turing/postgres
+sam local invoke QuestionFunction -e payload.json 
+
+echo '{"message": "Hey, are you there?" }' | sam local invoke "Ratings" 
+
+echo '{ "resource": "/questions","httpMethod": "GET"}' | sam local invoke QuestionFunction 
+echo '{"resource": "/hello","httpMethod": "GET"}' | sam local invoke HelloWorldFunction 
+sam package \
+   --template-file template.yaml \
+   --output-template-file tag-serverless-output.yaml \
+   --s3-bucket savkar.ai
+
+sam deploy \
+   --template-file tag-serverless-output.yaml \
+   --stack-name tag-engine \
+   --capabilities CAPABILITY_IAM
+
+
+aws cognito-idp sign-up --client-id 214p71u9qaethr5nbv20r1j51r --username sabrina --password P@ssw0rd --region us-east-1 --user-attributes '[{"Name":"given_name","Value":"Sabrina"},{"Name":"family_name","Value":"Ray"},{"Name":"email","Value":"sabrina@myemail.com"},{"Name":"gender","Value":"Female"}]'
+
+
