@@ -1,0 +1,206 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /test:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: example_aws
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      
+      operationId: test
+      parameters:
+         - name: name
+           in: query
+           description: The name of the person to whom to say hello
+           required: false
+           type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+          # responses may fall through to errors               
+  
+  
+# complex objects have schema definitions
+definitions:
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  owner:
+    type: object
+    required:
+        - fulfillment_id
+        - type
+    properties:
+      fulfillment_id:
+        type: integer
+        description: Fulfillment system identifier for the owner.
+      type:
+        type: string
+        description: The user type of the asset owner
+        enum:
+            - agent
+            - broker
+            - office
+  parent:
+    type: object
+    properties:
+      fulfillment_id:
+        type: integer
+        description: Fulfillment system identifier for the parent.
+      type:
+        type: string
+        description: The user type of the asset parent
+        enum:
+            - agent
+            - broker
+            - office
+  details:
+    type: object
+    required:
+        - line_number
+    properties:
+      line_number:
+        type: integer
+        description: The line number needs to be passed for every asset.
+    
+  ownerType: 
+    type: "object"
+    required: 
+      - "agent"
+      - "broker"
+    properties: 
+      broker: 
+        type: "boolean"
+        description: "The broker owner type needs to be specified"
+      agent: 
+        type: "boolean"
+        description: "The agent owner type needs to be specified"
+
+
+  assets: 
+    type: "object"
+    required: 
+      - "id"
+    properties: 
+      details: 
+        type: "array"
+        items: 
+          $ref: "#/definitions/details"
+      id: 
+        type: "string"
+        description: "The asset id for the product needs to be specified"
+      owner: 
+        $ref: "#/definitions/owner"
+      parent: 
+        $ref: "#/definitions/parent"
+        
+
+  attributes: 
+    type: "object"
+    properties: 
+      assets: 
+        type: "array"
+        items: 
+          $ref: "#/definitions/assets"
+      ownerType: 
+        $ref: "#/definitions/ownerType" 
+  
+  settings: 
+    type: "object"
+        
+  productSettings: 
+    type: "object"
+    properties: 
+      settings: 
+        $ref: "#/definitions/settings"
+        
+        
+  
+  restrictedapiv1usersfulfillmentIdproducts: 
+    type: "object"
+    required: 
+    - "fulfillment_id"
+    - "party_id"
+    - "type"
+    - "user_type"
+    properties: 
+      attributes: 
+        $ref: "#/definitions/attributes"
+      fulfillment_id: 
+        type: "integer"
+        description: "Fulfillment system identifier for the user."
+      party_id: 
+        type: "integer"
+        description: "Party ID for the account."
+      productSettings: 
+        $ref: "#/definitions/productSettings"
+      type: 
+        type: "string"
+        description: "The specific product type to add."
+        enum: 
+        - "showcase"
+        - "core"
+        - "listing_owner_lead"
+        - "listing_owner_brand"
+        - "trackable_phone_number"
+        - "buyer_market_lead"
+        - "seller_market_lead"
+      user_type: 
+        type: "string"
+        description: "The user type for the fulfillment_id."
+        enum: 
+        - "A"
+        - "K"
+        - "O"
+          
+          
