@@ -1,0 +1,10 @@
+imports:
+- path: vm_template.py
+
+resources:
+- name: vm_template
+  type: vm_template.py
+  properties:
+    zone: $ZONE$
+    machineType: $MACHINE_TYPE$
+    diskType: $DISK_TYPE$

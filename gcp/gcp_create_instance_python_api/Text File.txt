@@ -1,0 +1,20 @@
+Attached zip file contains the following files :-
+gcp_create_instance.py - Script for creating the Compute Instance using Python SDK
+instance_config.py - Dictionary containing the instance configuration.
+ 
+
+usage: gcp_create_instance.py [-h] [--project PROJECT] [--zone ZONE]
+[--credentials CREDENTIALS] [--name NAME]
+[--type TYPE] [--config CONFIG]
+
+optional arguments:
+-h, --help show this help message and exit
+--project PROJECT, -p PROJECT GCP Project Name
+--zone ZONE, -z ZONE GCP Zone
+--credentials CREDENTIALS, -creds CREDENTIALS GCP Service Account File
+--name NAME, -n NAME Instance Name
+--type TYPE, -t TYPE Instance Type
+--config CONFIG, -c CONFIG Instance Configuration
+
+gcp_create_instance.py -creds <service_account_json> -t <machine_type> -n <instance_name> -z <zone> -p <project_id>
+Note :- The service account JSON file is not present in the attached zip.

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "info": {
+    "title": "Single VM",
+    "author": "Google Inc.",
+    "description": "Creates a disk and a vm, and attaches the disk to the vm."
+  },
+  "required": [
+    "zone"
+  ],
+  "properties": {
+    "zone": {
+      "description": "Zone to create the resources in.",
+      "type": "string",
+      "enum": [
+        "us-east1-a",
+        "us-central1-a"
+      ],
+     "constraintDescription": "Must be a valid availability zone."
+    }
+  }
+}
