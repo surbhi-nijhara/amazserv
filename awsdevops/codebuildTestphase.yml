@@ -1,0 +1,54 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  #install:
+    #commands:
+      # - command
+      # - command
+    #finally:
+      # - command
+      # - command
+  pre_build:
+    commands:
+      # - command
+      # - command
+      npm install -g newman
+      npm install -g newman-reporter-html
+    #finally:
+      # - command
+      # - command
+  build:
+    commands:
+      # - command
+      # - command
+      newman run -r html,cli tagEngine/TagEngine_v1.postman_collection --reporter-html-export report.html
+    #finally:
+      # - command
+      # - command
+  #post_build:
+    #commands:
+      # - command
+      # - command
+    #finally:
+      # - command
+      # - command
+artifacts:
+  files:
+    # - location
+    # - location
+    # - name
+    - report.html
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - path
+    # - path
