@@ -8,7 +8,7 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
-    "hapi": "^10.0.0",
+    "hapi": "^11.0.0",
     "swagger-hapi": "^0.1.0"
   },
   "devDependencies": {
